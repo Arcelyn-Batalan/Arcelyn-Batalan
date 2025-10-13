@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gallery - Out of Frame Example</title>
+  <style>
+    /* Basic page styles for the demo */
+    body {
+      margin: 0;
+      font-family: "Georgia", serif;
+      background: #faf7f5;
+      color: #3b3b3b;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Example header to simulate your site top bar */
+    header {
+      height: 64px;
+      background: #fff;
+      border-bottom: 1px solid #e6e0dd;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    main {
+      padding: 36px 40px;
+    }
+
+    /* SECTION wrapper - keep relative if you want the heading positioned relative to a section */
+    .gallery-section {
+      position: relative; /* change to static if using .out-of-frame { position: fixed; } below */
+      height: 520px; /* demo height so the heading can stick out; remove or adjust in your site */
+      overflow: visible;
+    }
+
+    /* The large "Gallery" heading that sits out of the frame */
+    .section-title {
+      font-family: "Georgia", serif;
+      font-weight: 700;
+      color: #4a3b36;
+      text-shadow: 0 6px 0 rgba(0,0,0,0.06);
+      margin: 0;
+    }
+
+    /* Put the title partially outside the bottom-left of the section/page */
+    .out-of-frame {
+      position: absolute;    /* or use fixed if you want it tied to viewport */
+      left: -18px;           /* negative value moves it outside the left edge */
+      bottom: -38px;         /* negative value moves it below the bottom edge */
+      font-size: 88px;       /* large size like your screenshot */
+      letter-spacing: -2px;
+      transform: rotate(0deg); /* change angle if desired */
+      z-index: 1;
+      pointer-events: none;  /* prevents it from catching clicks if overlapping other UI */
+      opacity: 0.98;
+      line-height: 0.9;
+    }
+
+    /* Alternate: If you prefer the text anchored to viewport (always visible out of frame), use this:
+       .out-of-frame { position: fixed; left: -18px; bottom: -38px; } */
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .out-of-frame {
+        font-size: 56px;
+        left: -12px;
+        bottom: -28px;
+      }
+      .gallery-section {
+        height: 360px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .out-of-frame {
+        font-size: 40px;
+        left: -8px;
+        bottom: -22px;
+      }
+    }
+
+    /* Optional: if you want the headings elsewhere not to be covered by the giant text, raise their z-index */
+    .gallery-content {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>BTLN</div>
+  </header>
+
+  <main>
+    <section class="gallery-section" id="gallery">
+      <!-- Large "Gallery" which peeks out of the frame -->
+      <h2 class="section-title out-of-frame">Gallery</h2>
+
+      <!-- Actual gallery content should be above the oversized title (z-index) -->
+      <div class="gallery-content">
+        <p style="margin-top:40px;">Your gallery content goes here. The oversized title will sit partially outside the section.</p>
+        <!-- put gallery images / grid here -->
+      </div>
+    </section>
+  </main>
+</body>
+</html>
